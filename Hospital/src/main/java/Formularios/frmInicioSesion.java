@@ -1,31 +1,39 @@
-package formulario;
+package Formularios;
+
 import IniciarSesion.*;
 import javax.swing.JOptionPane;
 
-public class inicioSesion extends javax.swing.JPanel {
+public class frmInicioSesion extends javax.swing.JPanel {
 
-    public inicioSesion() {
+    public frmInicioSesion() {
         initComponents();
         Usuarios.crearUsuarios();
     }
 
-    private void iniciarSesion(){
-    String usuario = txtUsuario.getText();
-    char [] passwordAux = txtPassword.getPassword();
-    
-    String password = "";
-    for(int i = 0; i < passwordAux.length; i++){
-    password += passwordAux[i];
-    }
-    boolean encontrado = false;
-    for(int i = 0; i < Usuarios.usuarios.size(); i++){
-        Usuario u = Usuarios.usuarios.get(i);
-        if(usuario.equals(u.getNombre()) && password.equals(u.getPassword())){
-        Usuarios.usuarioActual = u;
-        //frmInicio p = new frmInicio;///Comprobar nombre
+    private void iniciarSesion() {
+        String usuario = txtUsuario.getText();
+        char[] passwordAux = txtPassword.getPassword();
+
+        String password = "";
+        for (int i = 0; i < passwordAux.length; i++) {
+            password += passwordAux[i];
+        }
+        boolean encontrado = false;
+        for (int i = 0; i < Usuarios.usuarios.size(); i++) {
+            Usuario u = Usuarios.usuarios.get(i);
+            if (usuario.equals(u.getNombre()) && password.equals(u.getPassword())) {
+                Usuarios.usuarioActual = u;
+                //Inserte Nomre de formulario = new frmInicio;///Comprobar nombre
+                frmSalaPacientes principal = new frmSalaPacientes(); 
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            JOptionPane.showMessageDialog(null, "Usuario y/o password incorrecto", "Atencion", JOptionPane.ERROR_MESSAGE);
         }
     }
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -98,6 +106,28 @@ public class inicioSesion extends javax.swing.JPanel {
 
     private void bntIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntIniciarActionPerformed
         // TODO add your handling code here:
+        String usuario = txtUsuario.getText();
+        char[] passwordAux = txtPassword.getPassword();
+
+        String password = "";
+        for (int i = 0; i < passwordAux.length; i++) {
+            password += passwordAux[i];
+        }
+        boolean encontrado = false;
+
+        for (int i = 0; i < Usuarios.usuarios.size(); i++) {
+            Usuario u = Usuarios.usuarios.get(i);
+            if (usuario.equals(u.getNombre()) && password.equals(u.getPassword())) {
+                Usuarios.usuarioActual = u;
+                //los mismo determinar el nombre del formulario principal
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            JOptionPane.showMessageDialog(null, "Usuario y/o password incorrecto", "Atencion", JOptionPane.ERROR_MESSAGE);
+
+        }
     }//GEN-LAST:event_bntIniciarActionPerformed
 
 
